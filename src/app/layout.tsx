@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Sora } from "next/font/google";
+import { Geist, Fraunces } from "next/font/google";
 import "./globals.css";
 import content from "@/content";
 import Nav from "@/components/Nav";
@@ -10,8 +10,8 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const sora = Sora({
-  variable: "--font-sora",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${sora.variable} h-full antialiased`}>
+    <html lang="en" className={`${geistSans.variable} ${fraunces.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Nav />
         <main className="flex-1 pb-16 md:pb-0">{children}</main>

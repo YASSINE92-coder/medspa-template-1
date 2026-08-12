@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 /*
- * Design tokens — "Mint & Ink" (Phase A visual direction).
- * Swapping the palette = editing ONLY this block.
+ * Design tokens — "Indigo Soft" (MedSpa Scale brand alternative).
+ * Compare with "Mint & Ink" on main. Swapping palette = ONLY this block.
  */
 @theme {
-  --color-bg: #fafaf7;
+  --color-bg: #faf9fc;
   --color-surface: #ffffff;
-  --color-ink: #101828;
-  --color-muted: #5d6b7a;
-  --color-accent: #0fb5a6;
-  --color-accent-soft: #e6f7f5;
-  --color-blush: #f6e8e4;
+  --color-ink: #191647;
+  --color-muted: #625f7a;
+  --color-accent: #6c65ea;
+  --color-accent-soft: #eeedfc;
+  --color-blush: #fdeae8;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
 body {
