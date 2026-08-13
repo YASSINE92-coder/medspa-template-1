@@ -400,7 +400,10 @@ export const content: SpaContent = {
       subheadline: "Science-backed skin treatments, friendly experts, and honest prices — no white-coat intimidation.",
       ctaLabel: "Book now",
       ctaHref: "#book",
-      image: { src: "/images/hero.webp", alt: "Bright, modern treatment room at Lumen Skin Studio" },
+      image: {
+        src: "https://images.unsplash.com/photo-1706795034830-de41aee06afa?q=80&w=1920&auto=format&fit=crop",
+        alt: "Client relaxing during a facial massage at Lumen Skin Studio",
+      },
     },
     trustStrip: {
       rating: 4.9,
