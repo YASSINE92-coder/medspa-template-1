@@ -18,10 +18,10 @@ export default function ContactPage() {
             {business.address.city}, {business.address.state} {business.address.zip}
           </p>
           <p className="mt-3 text-sm">
-            <a href={`tel:${business.phone.e164}`} className="text-accent">{business.phone.display}</a><br />
-            <a href={`mailto:${business.email}`} className="text-accent">{business.email}</a>
+            <a href={`tel:${business.phone.e164}`} className="text-accent-deep">{business.phone.display}</a><br />
+            <a href={`mailto:${business.email}`} className="text-accent-deep">{business.email}</a>
           </p>
-          <a href={business.address.mapUrl} className="mt-4 inline-block text-sm text-accent font-medium">
+          <a href={business.address.mapUrl} className="mt-4 inline-block text-sm text-accent-deep font-medium">
             Open in Maps →
           </a>
         </div>
@@ -39,7 +39,7 @@ export default function ContactPage() {
       </div>
       <a
         href={business.bookingUrl}
-        className="mt-10 inline-block rounded-full bg-accent text-white font-medium px-7 py-3.5"
+        className="mt-10 inline-block rounded-full bg-accent-ink text-white font-medium px-7 py-3.5 transition-colors hover:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
       >
         Book now
       </a>

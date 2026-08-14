@@ -10,7 +10,7 @@ export default function FinalCta() {
         {c.ctaLabel && (
           <a
             href={c.ctaHref}
-            className="inline-block mt-8 rounded-full bg-accent text-white font-medium px-7 py-3.5 hover:opacity-90 transition-opacity"
+            className="inline-block mt-8 rounded-full bg-accent-ink text-white font-medium px-7 py-3.5 transition-colors hover:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
           >
             {c.ctaLabel}
           </a>

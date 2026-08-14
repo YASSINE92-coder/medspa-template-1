@@ -25,14 +25,17 @@ export default function Section({
         {copy && (
           <div className="max-w-2xl">
             {copy.eyebrow && (
-              <p className="text-accent text-sm font-medium uppercase tracking-wide mb-2">
+              <p className="text-accent-deep text-sm font-medium uppercase tracking-wide mb-2">
                 {copy.eyebrow}
               </p>
             )}
             <h2 className="text-3xl md:text-4xl font-semibold">{copy.headline}</h2>
             {copy.subheadline && <p className="mt-3 text-muted">{copy.subheadline}</p>}
             {copy.ctaLabel && copy.ctaHref && (
-              <a href={copy.ctaHref} className="inline-block mt-5 text-accent font-medium">
+              <a
+                href={copy.ctaHref}
+                className="inline-block mt-5 rounded-full text-accent-deep font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
+              >
                 {copy.ctaLabel} →
               </a>
             )}

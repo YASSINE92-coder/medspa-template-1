@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code — per-machine only. CLAUDE.md, .claude/rules, .claude/skills
+# and .mcp.json are shared and stay committed.
+.claude/settings.local.json
+CLAUDE.local.md
+
+# browser QA artifacts (screenshots, snapshots, console logs)
+/.playwright-mcp/

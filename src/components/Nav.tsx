@@ -1,5 +1,6 @@
 import Link from "next/link";
 import content from "@/content";
+import MobileMenu from "@/components/MobileMenu";
 
 const links = [
   { href: "/", label: "Home" },
@@ -27,10 +28,11 @@ export default function Nav() {
           </nav>
           <a
             href={business.bookingUrl}
-            className="hidden md:inline-block rounded-full bg-accent text-white text-sm font-medium px-5 py-2.5 hover:opacity-90 transition-opacity"
+            className="hidden md:inline-block rounded-full bg-accent-ink text-white text-sm font-medium px-5 py-2.5 transition-colors hover:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           >
             Book now
           </a>
+          <MobileMenu links={links} />
         </div>
       </header>
 
@@ -38,13 +40,13 @@ export default function Nav() {
       <div className="fixed bottom-0 inset-x-0 z-40 md:hidden bg-surface border-t border-ink/10 p-3 flex gap-3">
         <a
           href={`tel:${business.phone.e164}`}
-          className="flex-1 rounded-full border border-ink/15 text-center text-sm font-medium py-3"
+          className="flex-1 rounded-full border border-ink/15 text-center text-sm font-medium py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           Call {business.phone.display}
         </a>
         <a
           href={business.bookingUrl}
-          className="flex-1 rounded-full bg-accent text-white text-center text-sm font-medium py-3"
+          className="flex-1 rounded-full bg-accent-ink text-white text-center text-sm font-medium py-3 transition-colors active:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
         >
           Book now
         </a>

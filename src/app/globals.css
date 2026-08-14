@@ -1,4 +1,15 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Class-based dark variant (shadcn's default). Kept deliberately: it means
+ * `dark:` utilities inside shadcn primitives only apply under a `.dark`
+ * ancestor, which this site never renders — so a visitor's system dark-mode
+ * preference can't half-apply a palette we haven't designed. Add a `.dark`
+ * block with real Mint & Ink dark values if dark mode is ever in scope.
+ */
+@custom-variant dark (&:is(.dark *));
 
 /*
  * Design tokens — "Mint & Ink" (Phase A visual direction).
@@ -9,12 +20,94 @@
   --color-surface: #ffffff;
   --color-ink: #101828;
   --color-muted: #5d6b7a;
+
+  /*
+   * The accent has three tiers, split by contrast duty. Pick by role, not by looks:
+   *
+   *   accent       #0fb5a6  DECORATION ONLY — dots, glows, gradients, tinted shadows.
+   *                         2.6:1 on white, so never text and never behind white text.
+   *   accent-ink   #0a7d74  Solid fill behind white text (buttons, CTAs) — 5.0:1.
+   *                         Also the focus-ring colour (5.0:1 non-text).
+   *   accent-deep  #096e66  Accent-COLOURED TEXT on any light surface — 5.1:1 even on
+   *                         blush, the worst case. Doubles as the hover/active state
+   *                         for accent-ink fills (6.1:1 behind white text).
+   *
+   * accent-ink is deliberately not used for text: it measures 4.19:1 on blush.
+   */
   --color-accent: #0fb5a6;
+  --color-accent-ink: #0a7d74;
+  --color-accent-deep: #096e66;
   --color-accent-soft: #e6f7f5;
   --color-blush: #f6e8e4;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * shadcn/ui semantic layer, mapped onto Mint & Ink above so any primitive we
+ * add is on-brand by construction instead of shipping shadcn's greys.
+ * This block deliberately does NOT redefine `accent`, `muted`, or the fonts —
+ * those names belong to Mint & Ink, and shadcn's versions of them would have
+ * replaced mint with grey and Sora with Geist.
+ *
+ * Two shadcn utilities therefore mean something different here. When you add a
+ * primitive that uses them as a *surface*, swap them:
+ *     bg-accent / hover:bg-accent  →  bg-hover-surface
+ *     bg-muted                     →  bg-subtle-surface
+ * (`text-accent-foreground` and `text-muted-foreground` need no swap — they
+ * already resolve to ink and muted ink.)
+ *
+ * Radius utilities are intentionally not remapped, so `rounded-2xl` / `rounded-3xl`
+ * keep Tailwind's values and the existing sections don't shift.
+ * Sidebar and chart tokens are omitted — no sidebar, no charts. Re-add them from
+ * the registry if that ever changes.
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-hover-surface: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-subtle-surface: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: var(--color-bg);
+  --foreground: var(--color-ink);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-ink);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-ink);
+  /* Primary is ink, not mint: white on mint measures 2.6:1 (see CLAUDE.md).
+     Revisit once an accessible ink-side accent token exists. */
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-surface);
+  --secondary: var(--color-accent-soft);
+  --secondary-foreground: var(--color-ink);
+  --accent: var(--color-accent-soft);
+  --accent-foreground: var(--color-ink);
+  --muted: var(--color-bg);
+  --muted-foreground: var(--color-muted);
+  /* No brand error colour yet — shadcn's default red until one is chosen. */
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: color-mix(in oklab, var(--color-ink) 10%, transparent);
+  --input: color-mix(in oklab, var(--color-ink) 15%, transparent);
+  /* Focus rings must clear 3:1 against adjacent colours — mint is 2.6:1, accent-ink is 5.0:1. */
+  --ring: var(--color-accent-ink);
+  --radius: 0.625rem;
 }
 
 body {
@@ -23,4 +116,16 @@ body {
 
 h1, h2, h3, h4 {
   @apply font-heading;
+}
+
+@layer base {
+  /*
+   * Default focus-ring colour for anything without its own focus-visible ring.
+   * shadcn ships this as `outline-ring/50`; at 50% alpha it measures ~2:1 on
+   * white, under the 3:1 WCAG 2.2 asks of a focus indicator. Full opacity
+   * accent-ink is 5.0:1. Outline colour only paints while focused.
+   */
+  * {
+    @apply border-border outline-ring;
+  }
 }

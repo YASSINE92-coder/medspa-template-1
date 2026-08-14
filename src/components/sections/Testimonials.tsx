@@ -8,7 +8,7 @@ export default function Testimonials() {
       <div className="mt-10 grid sm:grid-cols-2 gap-4">
         {content.testimonials.map((t) => (
           <figure key={t.id} className="rounded-2xl bg-surface p-6 shadow-sm">
-            <p className="text-accent text-sm">{"★".repeat(t.rating)}</p>
+            <p className="text-accent-deep text-sm">{"★".repeat(t.rating)}</p>
             <blockquote className="mt-2">&ldquo;{t.text}&rdquo;</blockquote>
             <figcaption className="mt-3 text-sm text-muted">{t.author}</figcaption>
           </figure>

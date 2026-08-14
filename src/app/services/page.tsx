@@ -15,7 +15,7 @@ export default function ServicesPage() {
           <article id={s.slug} key={s.slug} className="rounded-2xl bg-surface p-6 shadow-sm scroll-mt-24">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h2 className="text-xl font-semibold">{s.name}</h2>
-              <p className="text-accent font-medium">{formatPrice(s)}</p>
+              <p className="text-accent-deep font-medium">{formatPrice(s)}</p>
             </div>
             <p className="mt-2 text-muted max-w-2xl">{s.longDescription}</p>
             <ul className="mt-4 flex flex-wrap gap-2 text-sm">

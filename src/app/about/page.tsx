@@ -18,7 +18,7 @@ export default function AboutPage() {
               aria-label={m.photo.alt}
             />
             <h2 className="mt-4 font-semibold">{m.name}</h2>
-            <p className="text-sm text-accent">{m.role}</p>
+            <p className="text-sm text-accent-deep">{m.role}</p>
             <p className="mt-2 text-sm text-muted">{m.bio}</p>
           </div>
         ))}

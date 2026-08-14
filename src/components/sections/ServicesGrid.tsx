@@ -20,16 +20,16 @@ export default function ServicesGrid() {
           <a
             key={s.slug}
             href={`/services#${s.slug}`}
-            className="rounded-2xl bg-surface p-5 shadow-sm hover:shadow-md transition-shadow"
+            className="rounded-2xl bg-surface p-5 shadow-sm hover:shadow-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
           >
             {s.popular && (
-              <span className="inline-block text-xs font-medium text-accent bg-accent-soft rounded-full px-2.5 py-1 mb-3">
+              <span className="inline-block text-xs font-medium text-accent-deep bg-accent-soft rounded-full px-2.5 py-1 mb-3">
                 Popular
               </span>
             )}
             <h3 className="font-semibold">{s.name}</h3>
             <p className="mt-1 text-sm text-muted">{s.shortDescription}</p>
-            <p className="mt-3 text-sm font-medium text-accent">{formatPrice(s)}</p>
+            <p className="mt-3 text-sm font-medium text-accent-deep">{formatPrice(s)}</p>
           </a>
         ))}
       </div>

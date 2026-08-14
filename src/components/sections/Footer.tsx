@@ -16,7 +16,7 @@ export default function Footer() {
             <br />
             {business.address.city}, {business.address.state} {business.address.zip}
           </p>
-          <a href={business.address.mapUrl} className="text-accent">Open in Maps</a>
+          <a href={business.address.mapUrl} className="text-accent-deep">Open in Maps</a>
           <p className="mt-2 text-muted">
             <a href={`tel:${business.phone.e164}`}>{business.phone.display}</a> ·{" "}
             <a href={`mailto:${business.email}`}>{business.email}</a>

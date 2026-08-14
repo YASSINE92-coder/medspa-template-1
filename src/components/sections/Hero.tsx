@@ -39,7 +39,7 @@ export default function Hero() {
           {c.eyebrow && (
             <motion.p
               {...fadeUp(0)}
-              className="inline-flex items-center gap-2 rounded-full bg-surface/80 backdrop-blur px-4 py-1.5 text-sm font-medium text-accent shadow-sm ring-1 ring-ink/5"
+              className="inline-flex items-center gap-2 rounded-full bg-surface/80 backdrop-blur px-4 py-1.5 text-sm font-medium text-accent-deep shadow-sm ring-1 ring-ink/5"
             >
               <span aria-hidden className="size-1.5 rounded-full bg-accent" />
               {c.eyebrow}
@@ -62,20 +62,20 @@ export default function Hero() {
           <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={c.ctaHref}
-              className="rounded-full bg-accent px-7 py-3.5 font-medium text-white shadow-lg shadow-accent/25 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30 active:translate-y-0"
+              className="rounded-full bg-accent-ink px-7 py-3.5 font-medium text-white shadow-lg shadow-accent-ink/25 transition-all hover:-translate-y-0.5 hover:bg-accent-deep hover:shadow-xl hover:shadow-accent-ink/30 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-accent-soft"
             >
               {c.ctaLabel}
             </a>
             <a
               href={`tel:${business.phone.e164}`}
-              className="rounded-full px-5 py-3.5 font-medium text-ink underline-offset-4 transition-colors hover:text-accent"
+              className="rounded-full px-5 py-3.5 font-medium text-ink underline-offset-4 transition-colors hover:text-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-accent-soft"
             >
               {business.phone.display}
             </a>
           </motion.div>
 
           <motion.p {...fadeUp(0.32)} className="mt-6 text-sm text-muted">
-            <span className="text-accent" aria-hidden>★</span>{" "}
+            <span className="text-accent-deep" aria-hidden>★</span>{" "}
             <span className="font-medium text-ink">{t.rating}</span> · {t.reviewCount}+ reviews ·{" "}
             {business.address.city}, {business.address.state}
           </motion.p>
