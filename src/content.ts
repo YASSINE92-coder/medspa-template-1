@@ -95,6 +95,28 @@ export interface FaqItem {
   answer: string;
 }
 
+/**
+ * Icon keys for the trust strip proof points. Semantic (what the proof *is*),
+ * not iconographic — the component owns which glyph renders for each key, so a
+ * CMS only ever has to produce one of these three strings.
+ */
+export type TrustIcon = "nurse" | "pricing" | "booking";
+
+/** One proof point in the trust strip: a stable icon key plus its label. */
+export interface TrustBlurb {
+  icon: TrustIcon;
+  label: string;
+}
+
+export interface TrustStripCopy {
+  heading: string;        // accessible name for the band (rendered visually hidden)
+  rating: number;         // 4.9
+  ratingOutOf: number;    // 5 — drives the star count, so it's data not a magic number
+  reviewCount: number;    // 500 → rendered "500+"
+  reviewLabel: string;    // "client reviews" — kept distinct from the hero's proof line
+  blurbs: TrustBlurb[];   // exactly the 3 proof points
+}
+
 /** Copy for one homepage section — components render these, never own text. */
 export interface SectionCopy {
   eyebrow?: string;             // small label above the headline
@@ -106,7 +128,7 @@ export interface SectionCopy {
 
 export interface HomeCopy {
   hero: SectionCopy & { image: ImageAsset };
-  trustStrip: { rating: number; reviewCount: number; blurbs: string[] };
+  trustStrip: TrustStripCopy;
   services: SectionCopy;
   beforeAfter: SectionCopy;
   plannerTeaser: SectionCopy;   // links to /planner
@@ -406,9 +428,16 @@ export const content: SpaContent = {
       },
     },
     trustStrip: {
+      heading: "Why Austin books with Lumen",
       rating: 4.9,
+      ratingOutOf: 5,
       reviewCount: 500,
-      blurbs: ["Nurse-led treatments", "Transparent pricing", "Book online in 60 seconds"],
+      reviewLabel: "client reviews",
+      blurbs: [
+        { icon: "nurse", label: "Nurse-led treatments" },
+        { icon: "pricing", label: "Transparent pricing" },
+        { icon: "booking", label: "Book online in 60 seconds" },
+      ],
     },
     services: {
       eyebrow: "Treatments",
