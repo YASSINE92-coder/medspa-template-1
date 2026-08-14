@@ -17,10 +17,18 @@ export default function MobileMenu({ links }: { links: NavLink[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close when the route changes (user tapped a link)
-  useEffect(() => {
+  /*
+   * Close when the route changes. Tapping a link already closes the panel in its
+   * own onClick; this covers browser back/forward while the menu is open.
+   * Adjusting state during render — React's documented pattern for "a prop
+   * changed, reset some state" — rather than an effect, which would queue a
+   * second render pass after paint (react-hooks/set-state-in-effect).
+   */
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   // Close on Escape while open
   useEffect(() => {
