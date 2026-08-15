@@ -26,10 +26,13 @@ export default function Reveal({
   children,
   className,
   delay = 0,
+  duration = 0.6,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** 0.45–0.7s per the constitution; staggered groups shorten it to stay ≤800ms total. */
+  duration?: number;
 }) {
   return (
     <motion.div
@@ -37,7 +40,7 @@ export default function Reveal({
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, delay, ease }}
+      transition={{ duration, delay, ease }}
     >
       {children}
     </motion.div>

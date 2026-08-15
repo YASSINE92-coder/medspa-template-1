@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import content from "@/content";
-import { formatPrice } from "@/components/sections/ServicesGrid";
+import { formatPrice } from "@/lib/format";
 
 export const metadata: Metadata = { title: content.pages.services.title };
 

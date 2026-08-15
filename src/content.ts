@@ -298,7 +298,8 @@ export const content: SpaContent = {
       durationMinutes: 30,
       category: "laser",
       image: { src: "/images/services/laser.webp", alt: "Laser hair removal session" },
-      popular: true,
+      // §12-03 caps visible "Popular" badges at 2 — botox + hydrafacial carry it.
+      popular: false,
       benefits: ["All skin tones", "Quick sessions", "Long-term results"],
     },
     {
