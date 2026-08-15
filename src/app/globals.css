@@ -42,6 +42,19 @@
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  /*
+   * Depth recipe (design-direction.md): exactly two elevation levels.
+   * Resting = `ring-1 ring-ink/5` + `shadow-sm`. Raised/hover = this stacked
+   * low-opacity pair — never a single fat drop-shadow. rgb(16 24 40) is ink.
+   */
+  --shadow-raised: 0 1px 2px rgb(16 24 40 / 0.06), 0 8px 24px -8px rgb(16 24 40 / 0.1);
+
+  /*
+   * The house curve (§5 of the reference-intelligence report) for CSS-side
+   * micro-motion. Same values live as a JS array in Reveal/Hero for motion.
+   */
+  --ease-brand: cubic-bezier(0.21, 0.68, 0.32, 0.99);
 }
 
 /*
