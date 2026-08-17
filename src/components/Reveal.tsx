@@ -27,18 +27,24 @@ export default function Reveal({
   className,
   delay = 0,
   duration = 0.6,
+  y = 12,
+  scale,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   /** 0.45–0.7s per the constitution; staggered groups shorten it to stay ≤800ms total. */
   duration?: number;
+  /** Travel in px (8–16 per the constitution); media reveals pass 0 to scale in place. */
+  y?: number;
+  /** §5: 0.97–1.00, media reveals only — the rounded frame stays static, content scales inside it. */
+  scale?: number;
 }) {
   return (
     <motion.div
       className={`motion-reduce:transform-none! motion-reduce:opacity-100! ${className ?? ""}`}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, ...(scale !== undefined && { scale }) }}
+      whileInView={{ opacity: 1, y: 0, ...(scale !== undefined && { scale: 1 }) }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration, delay, ease }}
     >
