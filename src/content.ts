@@ -468,7 +468,10 @@ export const content: SpaContent = {
       subheadline: "We opened Lumen because great skin care shouldn't feel clinical or salesy. Come as you are.",
       ctaLabel: "Meet the team",
       ctaHref: "/about",
-      image: { src: "/images/about-preview.webp", alt: "The Lumen Skin Studio team" },
+      image: {
+        src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1600&auto=format&fit=crop",
+        alt: "An esthetician applying a facial mask to a relaxed client at Lumen Skin Studio",
+      },
     },
     finalCta: {
       headline: "Ready when you are",
