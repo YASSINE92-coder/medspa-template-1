@@ -146,7 +146,10 @@ export interface PlannerPageCopy extends PageCopy {
   comingSoonLabel: string;      // "Coming soon"
   pitch: string;                // the aspirational promise (see Nick's UX notes)
   bullets: string[];            // what the planner will do
-  notifyLabel: string;          // "Get notified when it launches"
+  notifyLabel: string;          // heading/label for the notify block
+  notifyButton: string;         // the submit label — short, verb-first
+  notifyNote: string;           // honesty microcopy: what the form really does in v1
+  emailPlaceholder: string;     // example address shown in the empty input
 }
 
 export interface SeoConfig {
@@ -453,9 +456,9 @@ export const content: SpaContent = {
       subheadline: "Drag the slider — every photo is an unedited client result.",
     },
     plannerTeaser: {
-      eyebrow: "Coming soon",
-      headline: "Plan your treatment before you book",
-      subheadline: "A guided planner that shows what's possible for your goals — at your pace, no pressure.",
+      eyebrow: "Coming soon · The Treatment Planner",
+      headline: "Start with a goal. Leave with a plan.",
+      subheadline: "Tell the planner where you want your skin to be, and it maps the treatments, timeline and budget to get there — at your pace, no pressure.",
       ctaLabel: "Preview the planner",
       ctaHref: "/planner",
     },
@@ -501,6 +504,9 @@ export const content: SpaContent = {
         "Save your plan and bring it to your free consult",
       ],
       notifyLabel: "Get notified when it launches",
+      notifyButton: "Notify me",
+      notifyNote: "The planner isn't live yet, so this opens an email to us — we'll add you to the list ourselves and reply when it launches.",
+      emailPlaceholder: "you@email.com",
     },
     contact: {
       title: "Find us",
