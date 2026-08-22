@@ -45,6 +45,7 @@ export interface BusinessInfo {
   email: string;
   address: Address;
   hours: DayHours[];
+  timezone: string;             // IANA zone, e.g. "America/Chicago" — drives "today" in the hours table
   bookingUrl: string;           // external booking link (or "#book")
   instagramUrl: string;
   facebookUrl: string;
@@ -202,6 +203,7 @@ export const content: SpaContent = {
       { day: "Sat", open: "10:00", close: "16:00" },
       { day: "Sun", open: null, close: null },
     ],
+    timezone: "America/Chicago",
     bookingUrl: "#book",
     instagramUrl: "https://instagram.com/lumenskinstudio",
     facebookUrl: "https://facebook.com/lumenskinstudio",
