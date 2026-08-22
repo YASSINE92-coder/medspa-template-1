@@ -45,6 +45,7 @@ export interface BusinessInfo {
   email: string;
   address: Address;
   hours: DayHours[];
+  timezone: string;             // IANA zone, e.g. "America/Chicago" — drives "today" in the hours table
   bookingUrl: string;           // external booking link (or "#book")
   instagramUrl: string;
   facebookUrl: string;
@@ -146,7 +147,10 @@ export interface PlannerPageCopy extends PageCopy {
   comingSoonLabel: string;      // "Coming soon"
   pitch: string;                // the aspirational promise (see Nick's UX notes)
   bullets: string[];            // what the planner will do
-  notifyLabel: string;          // "Get notified when it launches"
+  notifyLabel: string;          // heading/label for the notify block
+  notifyButton: string;         // the submit label — short, verb-first
+  notifyNote: string;           // honesty microcopy: what the form really does in v1
+  emailPlaceholder: string;     // example address shown in the empty input
 }
 
 export interface SeoConfig {
@@ -202,6 +206,7 @@ export const content: SpaContent = {
       { day: "Sat", open: "10:00", close: "16:00" },
       { day: "Sun", open: null, close: null },
     ],
+    timezone: "America/Chicago",
     bookingUrl: "#book",
     instagramUrl: "https://instagram.com/lumenskinstudio",
     facebookUrl: "https://facebook.com/lumenskinstudio",
@@ -453,9 +458,9 @@ export const content: SpaContent = {
       subheadline: "Drag the slider — every photo is an unedited client result.",
     },
     plannerTeaser: {
-      eyebrow: "Coming soon",
-      headline: "Plan your treatment before you book",
-      subheadline: "A guided planner that shows what's possible for your goals — at your pace, no pressure.",
+      eyebrow: "Coming soon · The Treatment Planner",
+      headline: "Start with a goal. Leave with a plan.",
+      subheadline: "Tell the planner where you want your skin to be, and it maps the treatments, timeline and budget to get there — at your pace, no pressure.",
       ctaLabel: "Preview the planner",
       ctaHref: "/planner",
     },
@@ -468,7 +473,10 @@ export const content: SpaContent = {
       subheadline: "We opened Lumen because great skin care shouldn't feel clinical or salesy. Come as you are.",
       ctaLabel: "Meet the team",
       ctaHref: "/about",
-      image: { src: "/images/about-preview.webp", alt: "The Lumen Skin Studio team" },
+      image: {
+        src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1600&auto=format&fit=crop",
+        alt: "An esthetician applying a facial mask to a relaxed client at Lumen Skin Studio",
+      },
     },
     finalCta: {
       headline: "Ready when you are",
@@ -498,6 +506,9 @@ export const content: SpaContent = {
         "Save your plan and bring it to your free consult",
       ],
       notifyLabel: "Get notified when it launches",
+      notifyButton: "Notify me",
+      notifyNote: "The planner isn't live yet, so this opens an email to us — we'll add you to the list ourselves and reply when it launches.",
+      emailPlaceholder: "you@email.com",
     },
     contact: {
       title: "Find us",

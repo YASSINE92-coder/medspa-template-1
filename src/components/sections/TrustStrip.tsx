@@ -1,6 +1,7 @@
-import { CalendarCheck, Star, Stethoscope, Tag, type LucideIcon } from "lucide-react";
+import { CalendarCheck, Stethoscope, Tag, type LucideIcon } from "lucide-react";
 
 import Reveal from "@/components/Reveal";
+import Stars from "@/components/ui/stars";
 import content, { type TrustIcon } from "@/content";
 
 /** Icon key (content) → glyph (UI). The mapping lives here so content.ts stays chrome-free. */
@@ -22,18 +23,6 @@ const glyphs: Record<TrustIcon, LucideIcon> = {
  */
 export default function TrustStrip() {
   const t = content.home.trustStrip;
-
-  // Stars are drawn from data, so any rating (4.2, 5.0) renders truthfully.
-  const filledPercent = Math.min(100, Math.max(0, (t.rating / t.ratingOutOf) * 100));
-  const stars = Array.from({ length: t.ratingOutOf }, (_, i) => i);
-
-  const starRow = (className: string) => (
-    <span className={`flex gap-0.5 ${className}`}>
-      {stars.map((i) => (
-        <Star key={i} className="size-3 shrink-0 fill-current" strokeWidth={0} />
-      ))}
-    </span>
-  );
 
   return (
     <section aria-labelledby="trust-heading" className="border-y border-ink/5 bg-surface">
@@ -67,15 +56,7 @@ export default function TrustStrip() {
 
         {/* Rating lockup — supporting, so ink stars rather than a second accent event. */}
         <div className="flex items-center gap-2.5 lg:shrink-0">
-          <span className="relative inline-flex" aria-hidden>
-            {starRow("text-ink/15")}
-            <span
-              className="absolute inset-y-0 left-0 overflow-hidden"
-              style={{ width: `${filledPercent}%` }}
-            >
-              {starRow("text-ink")}
-            </span>
-          </span>
+          <Stars value={t.rating} outOf={t.ratingOutOf} className="text-ink" />
           <p className="text-sm text-muted">
             <span className="font-medium text-ink">{t.rating}</span>
             <span className="sr-only"> out of {t.ratingOutOf}</span>

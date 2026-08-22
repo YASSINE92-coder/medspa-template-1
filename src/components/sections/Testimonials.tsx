@@ -1,19 +1,31 @@
+import Reveal from "@/components/Reveal";
+import TestimonialCarousel, { type TestimonialSlide } from "@/components/TestimonialCarousel";
 import content from "@/content";
 import Section from "./Section";
 
+/**
+ * 06 · Testimonials (§12-06) — human proof in the clients' own words, each
+ * quote linked to the service it praises. Server component: the slug→service
+ * relation is resolved here so the client carousel receives plain, minimal
+ * props; the single group Reveal is the section's only entrance (embla's
+ * momentum is the only other motion, per spec).
+ */
 export default function Testimonials() {
+  const slides: TestimonialSlide[] = content.testimonials.map(({ serviceSlug, ...t }) => {
+    const service = content.services.find((s) => s.slug === serviceSlug);
+    return {
+      ...t,
+      ...(service && {
+        service: { name: service.name, href: `/services#${service.slug}` },
+      }),
+    };
+  });
+
   return (
     <Section copy={content.home.testimonials} tone="bg">
-      {/* Embla carousel lands in Phase C — static grid for the skeleton */}
-      <div className="mt-10 grid sm:grid-cols-2 gap-4">
-        {content.testimonials.map((t) => (
-          <figure key={t.id} className="rounded-2xl bg-surface p-6 shadow-sm">
-            <p className="text-accent-deep text-sm">{"★".repeat(t.rating)}</p>
-            <blockquote className="mt-2">&ldquo;{t.text}&rdquo;</blockquote>
-            <figcaption className="mt-3 text-sm text-muted">{t.author}</figcaption>
-          </figure>
-        ))}
-      </div>
+      <Reveal className="mt-10">
+        <TestimonialCarousel items={slides} />
+      </Reveal>
     </Section>
   );
 }

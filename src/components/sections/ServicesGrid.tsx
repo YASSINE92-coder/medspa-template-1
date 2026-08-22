@@ -46,10 +46,12 @@ export default function ServicesGrid() {
                     Popular
                   </span>
                 )}
-                <h3 className={cn("text-lg leading-snug font-semibold", s.popular && "pr-20")}>
+                <h3
+                  className={cn("text-lg leading-snug font-semibold text-balance", s.popular && "pr-20")}
+                >
                   {s.name}
                 </h3>
-                <p className="mt-1.5 mb-5 text-sm leading-relaxed text-muted">
+                <p className="mt-1.5 mb-5 text-sm leading-relaxed text-pretty text-muted">
                   {s.shortDescription}
                 </p>
                 <div className="mt-auto flex items-center justify-between gap-2 border-t border-ink/5 pt-4">
@@ -71,9 +73,10 @@ export default function ServicesGrid() {
 
       {ctaLabel && ctaHref && (
         <div className="mt-8 flex justify-end">
+          {/* Padding + negative margin = a ≥44px touch target without moving the text. */}
           <Link
             href={ctaHref}
-            className="group inline-flex items-center gap-1.5 rounded-full font-medium text-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ink focus-visible:ring-offset-2"
+            className="group -mx-2 -my-2.5 inline-flex items-center gap-1.5 rounded-full px-2 py-2.5 font-medium text-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ink"
           >
             {ctaLabel}
             <ArrowRight
